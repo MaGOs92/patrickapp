@@ -1,3 +1,30 @@
-<div class="manette">
-
+<div class="manette-container">
+    <table #manette class="manette">
+        <tr (click)="setSpeed(3)">
+            <td class="position">
+                3
+            </td>
+        </tr>
+        <tr (click)="setSpeed(2)">
+            <td class="position">
+                2
+            </td>
+        </tr>
+        <tr (click)="setSpeed(1)">
+            <td class="position">
+                1
+            </td>
+        </tr>
+        <tr (click)="setSpeed(0)">
+            <td class="position">
+                0
+            </td>
+        </tr>
+        <tr (click)="setSpeed(-1)">
+            <td class="position">
+                R
+            </td>
+        </tr>
+    </table>
+    <div class="curseur" [style.transform]="getTranslation()"></div>
 </div>

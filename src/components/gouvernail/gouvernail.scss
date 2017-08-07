@@ -1,10 +1,73 @@
-.gouvernail {
-    height: 300px;
-    width: 300px;
-    left: calc(50% - 150px);
-    bottom: -150px;
-    border: 1px solid #d0d0d0;
+$gouvernail-length: 30vw;
+
+.gouvernail-container {
+    height: $gouvernail-length;
+    width: $gouvernail-length;
+    left: calc(50% - 15vw);
+    bottom: calc(-($gouvernail-length / 3));
     border-radius: 50%;
     background-color: #d0d0d0;
+    border: 2px solid black;
     position: fixed;
+}
+
+.gouvernail-cache {
+    position: absolute;
+    z-index: 2;
+    height: 90%;
+    width: 90%;
+    left: 5%;
+    top: 5%;
+    border-radius: 50%;
+    background-color: #d0d0d0;
+}
+
+.aiguille-gouvernail {
+    height: 100%;
+    width: 2px;
+    background-color: black;
+    left: 50%;
+    position: absolute;
+    z-index: 1;
+}
+
+.aiguille-base {
+    position: absolute;
+    z-index: 3;
+    height: 15%;
+    width: 15%;
+    left: calc(50% - (15% / 2));
+    top: calc(50% - (15% / 2));
+    border-radius: 50%;
+    background-color: red;
+}
+
+.aiguille-centre {
+    position: absolute;
+    z-index: 4;
+    height: 50%;
+    width: 50%;
+    left: 25%;
+    top: 25%;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.aiguille {
+    position: absolute;
+    z-index: 3;
+    height: 50%;
+    width: 2%;
+    background-color: red;
+    left: 49%;
+    transform-origin: 50% 100%;
+}
+
+.btn-direction {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: -50px;
+    top: -50px;
+    z-index: 2;
 }

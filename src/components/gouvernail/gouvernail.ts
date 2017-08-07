@@ -12,8 +12,18 @@ import { Component } from '@angular/core';
 })
 export class GouvernailComponent {
 
+  curDirection: number = 0;
+
   constructor() {
 
+  }
+
+  updateDirection(direction: number) {
+    this.curDirection = direction;
+  }
+
+  updateAiguilleRotation(): string {
+    return 'rotate(' + this.curDirection * 30 + 'deg)';
   }
 
 }

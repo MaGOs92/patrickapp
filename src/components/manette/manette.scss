@@ -1,9 +1,48 @@
-.manette {
-    height: 300px;
-    width: 100px;
-    right: 10px;
-    bottom: 10px;
-    border: 1px solid #d0d0d0;
+$manette-height: 50vh;
+$manette-width: 7vw;
+
+.manette-container {
+    height: $manette-height;
+    width: $manette-width;
+    right: 1vw;
+    bottom: 1vh;
     background-color: #d0d0d0;
     position: fixed;
+    border-radius: 30%;
+    border: 2px solid black;
 }
+
+.manette {
+    height: 90%;
+    width: 70%;
+    right: 15%;
+    bottom: 5%;
+    position: absolute;
+}
+
+.jauge {
+    height: 100%;
+    width: 5%;
+    right: 10%;
+    position: absolute;
+    z-index: 1;
+    background-color: black;
+}
+
+.curseur {
+    position: absolute;
+    z-index: 3;
+    left: 30%;
+    top: 62%;
+    transform-origin: top left;
+    width: 0px;
+    border: 1.5vw solid transparent;
+    border-left: 1.5vw solid black;
+}
+
+.position {
+    font-size: 1.5em;
+    vertical-align: middle;
+    text-align: right;
+}
+
