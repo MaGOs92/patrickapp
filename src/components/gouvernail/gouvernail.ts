@@ -1,25 +1,38 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  OnChanges
+} from "@angular/core";
 
-/*
-  Generated class for the Gouvernail component.
-
-  See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
-  for more info on Angular 2 Components.
-*/
 @Component({
   selector: 'gouvernail',
   templateUrl: 'gouvernail.html'
 })
-export class GouvernailComponent {
+export class GouvernailComponent implements OnChanges {
 
-  curDirection: number = 0;
+  clickable: boolean = true;
+  @Input() curDirection: number;
+  @Output() command: EventEmitter<any> = new EventEmitter();
 
   constructor() {
 
   }
 
+  ngOnChanges(changes) {
+    this.clickable = true;
+    this.updateAiguilleRotation();
+  }
+
   updateDirection(direction: number) {
-    this.curDirection = direction;
+    if (this.clickable && direction !== this.curDirection) {
+      this.command.emit({
+        motor: 'servo',
+        direction: direction.toString()
+      });
+      this.clickable = false;
+    }
   }
 
   updateAiguilleRotation(): string {

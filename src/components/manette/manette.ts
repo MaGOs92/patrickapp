@@ -1,22 +1,44 @@
-import { Component, ViewChild } from "@angular/core";
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  OnChanges,
+  ViewChild
+} from "@angular/core";
 
 @Component({
   selector: "manette",
   templateUrl: "manette.html"
 })
-export class ManetteComponent {
+export class ManetteComponent implements OnChanges {
 
-  curSpeed: number = 0;
+  clickable: boolean = true;
+  @Input() curSpeed: number;
+  @Output() command: EventEmitter<any> = new EventEmitter();
   @ViewChild("manette") manette;
 
-  constructor() {}
+  constructor() {
 
-  getTranslation(): string {
+  }
+
+  ngOnChanges(changes) {
+    this.clickable = true;
+    this.updateTranslation();
+  }
+
+  updateTranslation(): string {
     let manetteHeight =  this.manette.nativeElement.offsetHeight;
     return "translateY(" + (manetteHeight / 5) * -this.curSpeed + "px)";
   }
 
-  setSpeed(speed: number) {
-    this.curSpeed = speed;
+  updateSpeed(speed: number) {
+    if (this.clickable && speed !== this.curSpeed) {
+      this.command.emit({
+        motor: 'esc',
+        speed: speed.toString()
+      });
+      this.clickable = false;
+    }
   }
 }

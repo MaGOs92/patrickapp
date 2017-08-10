@@ -1,4 +1,4 @@
 <div class="pilotage-container">
-  <gouvernail></gouvernail>
-  <manette></manette>
+  <gouvernail [curDirection]="curDirection" (command)="sendCommand($event)"></gouvernail>
+  <manette [curSpeed]="curSpeed" (command)="sendCommand($event)"></manette>
 </div>
