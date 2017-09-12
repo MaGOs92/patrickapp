@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 import { patrickServer } from './../../constantes';
 import { Platform } from 'ionic-angular';
 
@@ -14,10 +14,13 @@ export class PilotageComponent {
   curDirection: number = 0;
   curSpeed: number = 0;
 
+  connected: boolean;
+
   constructor(private platform: Platform) {
     platform.ready().then(() => {
       this.connect();
     });
+    this.connected = false;
   }
 
   connect() {
@@ -30,6 +33,7 @@ export class PilotageComponent {
 
     this.motorsWs.onopen = () => {
       console.log('Motors websocket : connection opened');
+      this.connected = true;
     };
 
     this.motorsWs.onmessage = (msg: MessageEvent) => {
@@ -43,6 +47,7 @@ export class PilotageComponent {
 
     this.motorsWs.onclose = () => {
       console.log('Motors websocket : connection closed');
+      this.connected = false;
     };
   }
 

@@ -20,11 +20,13 @@ export class StreamComponent implements OnInit, AfterViewInit, OnDestroy {
   streamSocketURI = patrickServer + '/stream';
   @ViewChild('canvas') canvas: ElementRef;
   wsavc;
+  connected: boolean;
 
   constructor(private socketservice: SocketService, private platform: Platform) {
     platform.ready().then(() => {
       this.connect();
     });
+    this.connected = false;
   }
 
   ngOnInit() {
@@ -36,13 +38,21 @@ export class StreamComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.wsavc = new WSAvcPlayer(this.canvas.nativeElement, 'webgl', 1, 35);
+    this.wsavc.on('wsClosed', () => {
+      console.log('Stream websocket : connection closed');            
+      this.connected = false;
+    });
+    this.wsavc.on('wsOpened', () => {
+      console.log('Stream websocket : connection opened');      
+      this.connected = true;
+    });
   }
 
   connect() {
     this.wsavc.connect(this.streamSocketURI);
     this.wsavc.on('canvasReady', () => {
       this.playStream();
-    })
+    });
   }
 
   playStream() {
