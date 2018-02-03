@@ -1,14 +1,11 @@
 <div class="wrapper">
-    <div [hidden]="!stream.connected || !pilotage.connected" class="stream-wrapper">
-        <stream></stream>
-    </div>
-    <div [hidden]="!stream.connected || !pilotage.connected" class="pilotage-wrapper">
-        <pilotage></pilotage>
-    </div>
-    <div *ngIf="!stream.connected || !pilotage.connected" class="disconnected-wrapper">
+    <div *ngIf="!pilotage.connected" class="disconnected-wrapper">
         <div>
-            <div>La connexion au Patrick a échoué...</div>
+            <div>La connexion au Raspiboat a échoué...</div>
             <button (click)="tryConnection()">Ré-essayer</button>            
         </div>
+    </div>
+    <div [hidden]="!pilotage.connected" class="pilotage-wrapper">
+        <pilotage></pilotage>
     </div>
 </div>

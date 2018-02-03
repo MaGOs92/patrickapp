@@ -3,6 +3,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { StreamComponent, PilotageComponent, GouvernailComponent, ManetteComponent, OptionsComponent, PhotoComponent } from "../components";
 import { SocketService, WatchdogService } from "../providers";
+import { NgxVirtualJoystickModule } from "ngx-virtual-joystick";
+import { NgxGaugeModule } from "ngx-gauge";
 
 @NgModule({
   declarations: [
@@ -15,16 +17,16 @@ import { SocketService, WatchdogService } from "../providers";
     PhotoComponent
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    NgxVirtualJoystickModule.forRoot(),
+    NgxGaugeModule,
   ],
   bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp
-  ],
+  entryComponents: [MyApp],
   providers: [
     SocketService,
     WatchdogService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
 export class AppModule {}

@@ -1,29 +1,17 @@
-<div class="gouvernail-container">
-    <div class="aiguille-gouvernail">
-        <div (click)="updateDirection(0)" class="btn-direction"></div>
-    </div>
-    <div class="aiguille-gouvernail" style="transform: rotate(30deg);">
-        <div (click)="updateDirection(1)" class="btn-direction"></div>        
-    </div>
-    <div class="aiguille-gouvernail" style="transform: rotate(60deg) translateY(2px);">
-        <div (click)="updateDirection(2)" class="btn-direction"></div>        
-    </div>
-    <div class="aiguille-gouvernail" style="transform: rotate(90deg) translateY(3px);">
-        <div (click)="updateDirection(3)" class="btn-direction"></div>        
-    </div>
-    <div class="aiguille-gouvernail" style="transform: rotate(-30deg) translateY(-2px);;">
-        <div (click)="updateDirection(-1)" class="btn-direction"></div>        
-    </div>
-    <div class="aiguille-gouvernail" style="transform: rotate(-60deg) translateY(-2px);;">
-        <div (click)="updateDirection(-2)" class="btn-direction"></div>        
-    </div>
-    <div class="aiguille-gouvernail" style="transform: rotate(-90deg) translateY(-2px);;">
-        <div (click)="updateDirection(-3)" class="btn-direction"></div>        
-    </div>
-    <div class="gouvernail-cache">
-        <div class="aiguille" [style.transform]="updateAiguilleRotation()"></div>
-        <div class="aiguille-base">
-            <div class="aiguille-centre"></div>
+<div class="gouvernail-container"
+    [style.width.px]="size"
+    [style.height.px]="size">
+    <div [style.width.px]="size" [style.height.px]="size/2">
+        <div class="aiguille-container" 
+            [style.borderTopLeftRadius.px]="size/2"
+            [style.borderTopRightRadius.px]="size/2"
+            [style.width.px]="size"
+            [style.height.px]="size/2">
+            <div class="aiguille" [style.transform]="updateAiguilleRotation()"></div>
+            <div class="aiguille-base">
+                <div class="aiguille-centre"></div>
+            </div>
         </div>
     </div>
+    <h6>Direction</h6>
 </div>

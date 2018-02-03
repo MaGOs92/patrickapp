@@ -1,4 +1,10 @@
 <div class="pilotage-container">
-  <gouvernail [curDirection]="curDirection" (command)="sendCommand($event)"></gouvernail>
-  <manette [curSpeed]="curSpeed" (command)="sendCommand($event)"></manette>
+  <div class="ui-container">
+    <div #uiControls class="ui-controls">
+    <gouvernail [size]="gaugeSize" [value]="fnDirection()"></gouvernail>
+    <ngx-gauge type="arch" thick="10" [min]="speedMinValue" [max]="speedMaxValue" duration="1" label="Moteur" append="%" [value]="fnSpeed()" [size]="gaugeSize" [thresholds]="gaugeMotorthresholdsConfig"></ngx-gauge>
+    </div>
+    <div class="separator"></div>
+    <virtual-joystick #stick id="stick" (onChange)="update($event)"></virtual-joystick>
+  </div>
 </div>

@@ -1,5 +1,35 @@
 .pilotage-container {
-    position: relative;
+    .ui-container {
+        .ui-controls {
+            position: fixed;
+            height: 100%;
+            width: 49%;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 0;
+        }
+        .separator {
+            position: fixed;
+            height: 100%;
+            width: 2%;
+            top: 0;
+            left: 49%;
+            background-color: black;
+        }
+        #stick {
+            position: fixed;
+            height: 100%;
+            width: 50%;
+            top: 0;
+            right: 0;
+            z-index: 10;
+        }
+    }
+
 }
 
 

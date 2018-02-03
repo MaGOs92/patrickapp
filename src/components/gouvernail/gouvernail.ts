@@ -1,42 +1,19 @@
 import {
-  Component,
-  Input,
-  EventEmitter,
-  Output,
-  OnChanges
+  Component, Input
 } from "@angular/core";
 
 @Component({
-  selector: 'gouvernail',
-  templateUrl: 'gouvernail.html'
+  selector: "gouvernail",
+  templateUrl: "gouvernail.html"
 })
-export class GouvernailComponent implements OnChanges {
+export class GouvernailComponent {
 
-  clickable: boolean = true;
-  @Input() curDirection: number;
-  @Output() command: EventEmitter<any> = new EventEmitter();
+  @Input() value: number;
+  @Input() size: number;
 
-  constructor() {
-
-  }
-
-  ngOnChanges(changes) {
-    this.clickable = true;
-    this.updateAiguilleRotation();
-  }
-
-  updateDirection(direction: number) {
-    if (this.clickable && direction !== this.curDirection) {
-      this.command.emit({
-        motor: 'servo',
-        direction: direction.toString()
-      });
-      this.clickable = false;
-    }
-  }
+  constructor() {}
 
   updateAiguilleRotation(): string {
-    return 'rotate(' + this.curDirection * 30 + 'deg)';
+    return "rotate(" + this.value + "deg)";
   }
-
 }

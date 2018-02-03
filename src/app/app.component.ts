@@ -1,7 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 import { Platform, AlertController, Alert } from "ionic-angular";
 import { StatusBar, Splashscreen } from "ionic-native";
-import { StreamComponent, PilotageComponent } from "../components/index";
+import { PilotageComponent } from "../components/index";
 
 @Component({
   templateUrl: 'app.html'
@@ -9,7 +9,7 @@ import { StreamComponent, PilotageComponent } from "../components/index";
 export class MyApp {
 
   alert: Alert;
-  @ViewChild(StreamComponent) stream: StreamComponent;
+  // @ViewChild(StreamComponent) stream: StreamComponent;
   @ViewChild(PilotageComponent) pilotage: PilotageComponent;
 
   constructor(private platform: Platform, private alertCtrl: AlertController) {
@@ -54,8 +54,8 @@ export class MyApp {
     if (!this.pilotage.connected) {
       this.pilotage.connect();
     }
-    if (!this.stream.connected) {
-      this.stream.connect();
-    }
+    // if (!this.stream.connected) {
+    //   this.stream.connect();
+    // }
   }
 }

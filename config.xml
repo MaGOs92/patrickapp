@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.patrickapp439984" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Le Patrick</name>
-  <description>Application Android permettant de piloter un bateau de modélisme (Le Patrick)</description>
+  <name>RaspiBoat</name>
+  <description>Application Android permettant de piloter un bateau de modélisme grâce à un Raspberry Pie 0</description>
   <author email="guillaume_fay@hotmail.com" href="https://github.com/MaGOs92">Guillaume Fay</author>
   <content src="index.html"/>
   <access origin="*"/>
