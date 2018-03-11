@@ -2,65 +2,53 @@ import {
   Component,
   OnInit,
   ViewChild,
-  ElementRef,
-  AfterViewInit,
-  OnDestroy
+  ElementRef
 } from "@angular/core";
-import { SocketService } from '../../providers/socket';
-import WSAvcPlayer from '../../../node_modules/h264-live-player/wsavc';
-import { patrickServer } from '../../constantes';
+import { raspiBoatConfig } from '../../constantes';
 import { Platform } from 'ionic-angular';
+import { WsWebRTCService } from "../../providers/ws-web-rtc";
 
 @Component({
   selector: 'stream',
   templateUrl: 'stream.html'
 })
-export class StreamComponent implements OnInit, AfterViewInit, OnDestroy {
+export class StreamComponent implements OnInit {
 
-  streamSocketURI = patrickServer + '/stream';
-  @ViewChild('canvas') canvas: ElementRef;
-  wsavc;
+  rwsServerURL = raspiBoatConfig.rwsServer.protocol + '://' + raspiBoatConfig.ip + ':' + raspiBoatConfig.rwsServer.port + '/rws/ws';
+  websocket: WebSocket;
+  @ViewChild('video') videoRef: ElementRef;
+  video;
   connected: boolean;
 
-  constructor(private socketservice: SocketService, private platform: Platform) {
-    platform.ready().then(() => {
-      this.connect();
-    });
-    this.connected = false;
-  }
+  constructor(
+    private platform: Platform, private wsWebRTCService: WsWebRTCService) {
+      platform.ready().then(() => {
+        this.connect();
+      });
+      this.wsWebRTCService.websocketStatus$.subscribe(wsState => {
+        this.connected = (wsState === WebSocket.OPEN || wsState === WebSocket.CONNECTING);
+        console.log('STREAM CONNECTED : ' + this.connected)
+      });
+    }
 
   ngOnInit() {
-  }
-
-  ngOnDestroy() {
-    this.wsavc.disconnect();
-  }
-
-  ngAfterViewInit() {
-    this.wsavc = new WSAvcPlayer(this.canvas.nativeElement, 'webgl', 1, 35);
-    this.wsavc.on('wsClosed', () => {
-      console.log('Stream websocket : connection closed');            
-      this.connected = false;
-    });
-    this.wsavc.on('wsOpened', () => {
-      console.log('Stream websocket : connection opened');      
-      this.connected = true;
+    console.log('INIT COMPONENNT');
+    this.video = this.videoRef.nativeElement;
+    this.wsWebRTCService.isStreaming.subscribe((isStreaming: boolean) => {
+      console.log('STREAM RECEIVED PEERCONNECTION');
+      if (isStreaming) {
+        this.setVideoStream();
+      }
     });
   }
 
   connect() {
-    this.wsavc.connect(this.streamSocketURI);
-    this.wsavc.on('canvasReady', () => {
-      this.playStream();
-    });
+    this.wsWebRTCService.createWebSocket(this.rwsServerURL);
   }
 
-  playStream() {
-    this.wsavc.playStream();
+  setVideoStream() {
+    this.video.src = URL.createObjectURL(this.wsWebRTCService.stream);
+    console.log('IN VIDEO STREAM', this.wsWebRTCService.stream);
+    this.video.play();
   }
-
-  stopStream() {
-    this.wsavc.stopStream();
-  }
-
 }

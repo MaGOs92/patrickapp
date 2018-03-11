@@ -1,8 +1,8 @@
 {
-  "name": "patrickapp",
+  "name": "raspiboat",
   "author": "Guillaume Fay",
   "version": "0.0.1",
-  "homepage": "https://github.com/MaGOs92/patrickapp",
+  "homepage": "https://github.com/MaGOs92/raspiboat-client",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -21,7 +21,6 @@
     "@angular/platform-browser-dynamic": "2.2.1",
     "@angular/platform-server": "2.2.1",
     "@ionic/storage": "1.1.7",
-    "h264-live-player": "^1.3.1",
     "ionic-angular": "2.1.0",
     "ionic-native": "2.4.1",
     "ionicons": "3.0.0",
@@ -33,6 +32,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.1.3",
+    "@types/webrtc": "0.0.22",
     "typescript": "2.0.9"
   },
   "cordovaPlugins": [
@@ -51,5 +51,5 @@
       "locator": "ios"
     }
   ],
-  "description": "Application Android permettant de piloter un bateau de modélisme (Le Patrick)"
+  "description": "Application Android permettant de piloter un bateau de modélisme"
 }

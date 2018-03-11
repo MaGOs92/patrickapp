@@ -12,3 +12,12 @@
   https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html
 */
 declare module '*';
+
+interface RTCSessionDescriptionInit { }
+interface RTCPeerConnectionErrorCallback { }
+interface RTCSessionDescriptionCallback { }
+interface RTCIceCandidateInit { }
+
+declare var RTCPeerConnection: any;
+declare var RTCSessionDescription: any;
+declare var RTCIceCandidate: any;

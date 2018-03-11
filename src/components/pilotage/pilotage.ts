@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { patrickServer } from './../../constantes';
+import { raspiBoatConfig } from './../../constantes';
 import { Platform } from 'ionic-angular';
 import { ViewChild } from "@angular/core/src/metadata/di";
 
@@ -8,7 +8,7 @@ import { ViewChild } from "@angular/core/src/metadata/di";
   templateUrl: "pilotage.html"
 })
 export class PilotageComponent implements OnInit {
-  motorsSocketURL: string = patrickServer + "/motors";
+  motorsSocketURL: string = raspiBoatConfig.raspiBoatServer.protocol + '://' + raspiBoatConfig.ip + ':' + raspiBoatConfig.raspiBoatServer.port + '/mortors';
   motorsWs: WebSocket;
 
   connected: boolean;

@@ -5,7 +5,10 @@
             <button (click)="tryConnection()">Ré-essayer</button>            
         </div>
     </div>
-    <div [hidden]="!pilotage.connected" class="pilotage-wrapper">
+    <div [hidden]="false" class="stream-wrapper">
+        <stream></stream>
+    </div>
+    <div [hidden]="true" class="pilotage-wrapper">
         <pilotage></pilotage>
     </div>
 </div>
